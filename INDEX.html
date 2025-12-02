@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA EM MANUTENÇÃO</title>
+    <style>
+        :root {
+            /* Cores Dark Mode (Padrão) */
+            --cor-primaria: #00BFFF; /* Azul Claro Vibrante */
+            --cor-secundaria: #008DBC;
+            --cor-fundo: #121212; 
+            --cor-card-fundo: #1E1E1E; 
+            --cor-texto-principal: #F0F0F0;
+            --cor-texto-secundario: #A0A0A0;
+            --cor-btn-whatsapp: #25D366; 
+            --border-radius-main: 12px;
+        }
+
+        /* Adaptação para o Light Mode (caso o navegador do usuário force) */
+        body.light-mode {
+            --cor-fundo: #F0F2F5; 
+            --cor-card-fundo: #FFFFFF; 
+            --cor-texto-principal: #333333; 
+            --cor-texto-secundario: #666666;
+            --cor-btn-whatsapp: #4CAF50;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: var(--cor-fundo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: var(--cor-texto-principal);
+            transition: background-color 0.2s, color 0.2s;
+            text-align: center;
+        }
+
+        /* ----------------------------------- */
+        /* BOTÃO DE TOPO (SUPORTE) - Estilo copiado do index.html */
+        /* ----------------------------------- */
+        .top-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 15px;
+            border-radius: var(--border-radius-main);
+            font-size: 0.9em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .top-support-btn {
+            background-color: var(--cor-btn-whatsapp);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+        }
+        .top-support-btn:hover {
+            background-color: #128C7E;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.7);
+            transform: translateY(-2px);
+        }
+        
+        /* ----------------------------------- */
+        /* CAIXA DE MENSAGEM DE MANUTENÇÃO */
+        /* ----------------------------------- */
+        .manutencao-box {
+            background-color: var(--cor-card-fundo);
+            padding: 40px;
+            border-radius: var(--border-radius-main);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            max-width: 400px;
+            width: 90%;
+            border: 2px solid var(--cor-primaria);
+        }
+        
+        .manutencao-box h2 {
+            color: var(--cor-primaria);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .manutencao-box p {
+            font-size: 1.1em;
+            color: var(--cor-texto-secundario);
+            margin-bottom: 25px;
+        }
+        
+        .manutencao-icon {
+            font-size: 4em;
+            color: var(--cor-primaria);
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="manutencao-box">
+        <div class="manutencao-icon">🔧</div>
+        <h2>SISTEMA EM MANUTENÇÃO</h2>
+        <p>Estamos realizando melhorias e atualizações importantes.</p>
+        <p>Por favor, **entre em contato com o suporte** para qualquer urgência ou dúvida.</p>
+    </div>
+
+    <a href="javascript:void(0)" target="_blank" class="top-button top-support-btn" id="supportButton" title="Fale com nosso Suporte">
+        💬 Suporte
+    </a>
+
+    <script>
+        // CRÍTICO: MANTENHA ESTES NÚMEROS AQUI
+        const WHATSAPP_NUMBER_MAIN = "553196373580"; 
+        const WHATSAPP_NUMBER_SECONDARY = "553899112827"; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // LÓGICA DE ROTAÇÃO DE NÚMEROS DE SUPORTE
+            const supportNumbers = [WHATSAPP_NUMBER_MAIN, WHATSAPP_NUMBER_SECONDARY];
+            const chosenNumber = supportNumbers[Math.floor(Math.random() * supportNumbers.length)];
+
+            // Configura o link do WhatsApp
+            const supportButton = document.getElementById('supportButton');
+            if (supportButton) {
+                supportButton.href = `https://wa.me/${chosenNumber}?text=Olá!%20O%20site%20está%20em%20manutenção.%20Preciso%20de%20suporte.`;
+            }
+            
+            // Tenta aplicar o tema escuro padrão (para manter o visual)
+            if (!document.body.classList.contains('light-mode')) {
+                 document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>
